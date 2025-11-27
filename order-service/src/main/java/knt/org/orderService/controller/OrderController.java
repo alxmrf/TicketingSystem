@@ -1,6 +1,5 @@
-package Controller.knt.org.controller;
+package knt.org.orderService.controller;
 
-import Controller.knt.org.entity.Order;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.GET;
@@ -8,6 +7,7 @@ import jakarta.ws.rs.POST;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
+import knt.org.orderService.entity.Order;
 import org.eclipse.microprofile.reactive.messaging.Channel;
 import org.eclipse.microprofile.reactive.messaging.Emitter;
 
@@ -25,7 +25,6 @@ public class OrderController {
     @Consumes(MediaType.APPLICATION_JSON)
     public Response createOrder(Order newOrder){
         try {
-            newOrder.setId(UUID.randomUUID().toString());
             System.out.println(newOrder);
             this.orderEmitter.send(newOrder);
             System.out.println("Ticket enviado");
