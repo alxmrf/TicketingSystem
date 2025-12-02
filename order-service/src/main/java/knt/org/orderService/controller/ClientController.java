@@ -25,6 +25,7 @@ public class ClientController {
 
 
     @POST
+    @Path("/add-client")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     @Transactional

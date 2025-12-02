@@ -7,6 +7,7 @@ import jakarta.ws.rs.POST;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
+import knt.org.orderService.dto.input.OrderRequest;
 import knt.org.orderService.entity.Order;
 import org.eclipse.microprofile.reactive.messaging.Channel;
 import org.eclipse.microprofile.reactive.messaging.Emitter;
@@ -23,16 +24,8 @@ public class OrderController {
     @POST
     @Path("/create-order")
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response createOrder(Order newOrder){
-        try {
-            System.out.println(newOrder);
-            this.orderEmitter.send(newOrder);
-            System.out.println("Ticket enviado");
-            return Response.status(Response.Status.ACCEPTED).build();
-        }
-        catch (Exception e){
-            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).build();
-        }
+    public Response createOrder(OrderRequest newOrder){
+
     }
 
 
