@@ -1,0 +1,105 @@
+{
+  "namespace": "knt.org.ticketingProjectSchemas.ticket",
+  "type": "record",
+  "name": "TicketEnvelope",
+  "fields": [
+    {
+      "name": "orderId",
+      "type": "string"
+    },
+    {
+      "name": "ticketEventDate",
+      "type": { "type": "long", "logicalType": "timestamp-millis" }
+    },
+    {
+      "name": "eventType",
+      "type": {
+        "type": "enum",
+        "name": "TicketEventType",
+        "symbols": [
+          "TICKET_RESERVED",
+          "TICKET_RAN_OUT",
+          "TICKET_ROLL_BACK",
+          "TICKET_RESERVE_FAILED"
+        ]
+      }
+    },
+    {
+      "name": "payload",
+      "type": [
+        "null",
+        {
+          "type": "record",
+          "name": "TicketReservedPayload",
+          "fields": [
+            {
+              "name": "userId",
+              "type": "long"
+            },
+            {
+              "name": "showId",
+              "type": "long"
+            },
+            {
+              "name": "ticketKind",
+              "type": "string"
+            },
+            {
+              "name": "quantity",
+              "type": "int",
+              "default": 1
+            }
+          ]
+        },
+        {
+          "type": "record",
+          "name": "TicketRanOutPayload",
+          "fields": [
+            {
+              "name": "showId",
+              "type": "long"
+            },
+            {
+              "name": "ticketKind",
+              "type": "string"
+            }
+          ]
+        },
+        {
+          "type": "record",
+          "name": "TicketRollBackPayload",
+          "fields": [
+            {
+              "name": "showId",
+              "type": "long"
+            },
+            {
+              "name": "ticketKind",
+              "type": "string"
+            },
+            { "name": "quantity", "type": "int" } 
+          ]
+        },
+        {
+          "type": "record",
+          "name": "TicketReserveFailedPayload",
+          "fields": [
+            {
+              "name": "failureReason",
+              "type": "string"
+            },            
+            {
+              "name": "showId",
+              "type": "long"
+            },
+            {
+              "name": "ticketKind",
+              "type": "string"
+            }
+          ]
+        }
+      ],
+      "default": null
+    }
+  ]
+}

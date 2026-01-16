@@ -1,0 +1,80 @@
+{
+  "namespace": "knt.org.ticketingProjectSchemas.order",
+  "type": "record",
+  "name": "OrderEnvelope",
+  "fields": [
+    { "name": "orderId", "type": "string" },
+    { "name": "orderDate", "type": { "type": "long", "logicalType": "timestamp-millis" } },
+    {
+      "name": "eventType",
+      "type": {
+        "type": "enum",
+        "name": "OrderEventType",
+        "symbols": ["ORDER_CREATED", "ORDER_CANCELLED", "ORDER_COMPLETED","ORDER_FAILED"]
+      }
+    },
+    {
+      "name": "payload",
+      "type": [
+        "null",
+        {
+          "type": "record",
+          "name": "OrderCreatedPayload",
+          "fields": [
+            { "name": "userId", "type": "long" },
+            { "name": "showId", "type": "long" },
+            { "name": "ticketKind", "type": "string" },
+            { "name": "quantity", "type": "int", "default": 1 },
+            {
+              "name": "paymentMethod",
+              "type": [
+                {
+                  "name": "pixDetails",
+                  "type": "record",
+                  "fields": [
+                    {
+                      "name": "pixKey",
+                      "type": "string"
+                    }
+                  ]
+                },
+                {
+                  "name": "creditCardDetails",
+                  "type": "record",
+                  "fields": [
+                    {
+                      "name": "token",
+                      "type": "string"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "record",
+          "name": "OrderFinalizedPayload",
+          "fields": [{ "name": "orderId", "type": "string" }]
+        },
+        {
+          "type": "record",
+          "name": "OrderFailedPayload",
+          "fields": [
+            { "name": "orderId", "type": "string" },
+            { "name": "failureReason", "type": "string" }
+          ]
+        },
+        {
+          "type": "record",
+          "name": "OrderCancelledPayload",
+          "fields": [
+            { "name": "orderId", "type": "string" },
+            { "name": "cancelationReason", "type": "string" }
+          ]
+        }
+      ],
+      "default": null
+    }
+  ]
+}

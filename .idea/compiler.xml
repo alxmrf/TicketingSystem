@@ -8,6 +8,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="order-service" />
         <module name="payment-service" />
+        <module name="ticket-system-schemas" />
         <module name="ticket-service" />
       </profile>
     </annotationProcessing>

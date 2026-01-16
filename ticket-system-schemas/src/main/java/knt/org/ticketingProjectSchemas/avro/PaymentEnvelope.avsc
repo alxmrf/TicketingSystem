@@ -1,0 +1,45 @@
+{
+  "namespace": "knt.org.ticketingProjectSchemas.payment",
+  "type": "record",
+  "name": "PaymentEnvelope",
+  "fields": [
+    { "name": "orderId", "type": "string" },
+    { "name": "paymentDate", "type":{ "type": "long", "logicalType": "timestamp-millis" }},
+    {
+      "name": "eventType",
+      "type": {
+        "type": "enum",
+        "name": "PaymentEventType",
+        "symbols": ["PAYMENT_SUCCESS", "PAYMENT_FAILURE", "PAYMENT_CANCELLED"]
+      }
+    },
+    {
+      "name": "payload",
+      "type": [
+        "null",
+        {
+          "type": "record",
+          "name": "PaymentSuccessPayload",
+          "fields": [{ "name": "orderId", "type": "string" }]
+        },
+        {
+          "type": "record",
+          "name": "PaymentFailedPayload",
+          "fields": [
+            { "name": "orderId", "type": "string" },
+            { "name": "failureReason", "type": "string" }
+          ]
+        },
+        {
+          "type": "record",
+          "name": "PaymentCancelledPayload",
+          "fields": [
+            { "name": "orderId", "type": "string" },
+            { "name": "cancelationReason", "type": "string" }
+          ]
+        }
+      ],
+      "default": null
+    }
+  ]
+}
