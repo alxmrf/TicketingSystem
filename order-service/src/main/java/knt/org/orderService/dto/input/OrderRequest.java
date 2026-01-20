@@ -6,5 +6,6 @@ import jakarta.validation.constraints.Positive;
 public record OrderRequest (
     @NotNull String cpfClient,
     @NotNull String showName,
-    @Positive @NotNull Integer quantity,
+    @NotNull String ticketKind,
+    @Positive @NotNull Integer ticketQuantity,
     @Positive @NotNull Double price){ }

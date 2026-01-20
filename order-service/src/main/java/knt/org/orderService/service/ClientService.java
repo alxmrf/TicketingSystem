@@ -17,8 +17,8 @@ public class ClientService {
         newClient.persist();
     }
 
-    public void verifyClient(String cpf){
-        Client.find("cpf = :cpf", Parameters.with("cpf",cpf)).singleResult();
+    public Client findClient(String cpf){
+        return Client.find("cpf = :cpf", Parameters.with("cpf",cpf)).singleResult();
 
     }
 

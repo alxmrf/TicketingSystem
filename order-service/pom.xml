@@ -31,6 +31,11 @@
 
     <dependencies>
         <dependency>
+            <groupId>org.mapstruct</groupId>
+            <artifactId>mapstruct</artifactId>
+            <version>1.6.3</version>
+        </dependency>
+        <dependency>
             <groupId>io.quarkus</groupId>
             <artifactId>quarkus-arc</artifactId>
         </dependency>
@@ -68,6 +73,12 @@
             <artifactId>lombok</artifactId>
             <version>1.18.30</version>
             <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>knt.org.</groupId>
+            <artifactId>ticketingProjectSchemas</artifactId>
+            <version>00.00.00.01</version>
+            <scope>compile</scope>
         </dependency>
     </dependencies>
 

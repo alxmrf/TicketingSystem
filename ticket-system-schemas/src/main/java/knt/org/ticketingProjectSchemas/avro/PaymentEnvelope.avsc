@@ -1,45 +1,43 @@
-{
-  "namespace": "knt.org.ticketingProjectSchemas.payment",
-  "type": "record",
-  "name": "PaymentEnvelope",
-  "fields": [
-    { "name": "orderId", "type": "string" },
-    { "name": "paymentDate", "type":{ "type": "long", "logicalType": "timestamp-millis" }},
     {
-      "name": "eventType",
-      "type": {
-        "type": "enum",
-        "name": "PaymentEventType",
-        "symbols": ["PAYMENT_SUCCESS", "PAYMENT_FAILURE", "PAYMENT_CANCELLED"]
-      }
-    },
-    {
-      "name": "payload",
-      "type": [
-        "null",
+      "namespace": "knt.org.ticketingProjectSchemas.payment",
+      "type": "record",
+      "name": "PaymentEnvelope",
+      "fields": [
+        { "name": "orderId", "type": "long" },
+        { "name": "paymentDate", "type":{ "type": "long", "logicalType": "timestamp-millis" }},
         {
-          "type": "record",
-          "name": "PaymentSuccessPayload",
-          "fields": [{ "name": "orderId", "type": "string" }]
+          "name": "eventType",
+          "type": {
+            "type": "enum",
+            "name": "PaymentEventType",
+            "symbols": ["PAYMENT_SUCCESS", "PAYMENT_FAILURE", "PAYMENT_CANCELLED"]
+          }
         },
         {
-          "type": "record",
-          "name": "PaymentFailedPayload",
-          "fields": [
-            { "name": "orderId", "type": "string" },
-            { "name": "failureReason", "type": "string" }
-          ]
-        },
-        {
-          "type": "record",
-          "name": "PaymentCancelledPayload",
-          "fields": [
-            { "name": "orderId", "type": "string" },
-            { "name": "cancelationReason", "type": "string" }
-          ]
+          "name": "payload",
+          "type": [
+            "null",
+            {
+              "type": "record",
+              "name": "PaymentSuccessPayload",
+              "fields": []
+            },
+            {
+              "type": "record",
+              "name": "PaymentFailedPayload",
+              "fields": [
+                { "name": "failureReason", "type": "string" }
+              ]
+            },
+            {
+              "type": "record",
+              "name": "PaymentCancelledPayload",
+              "fields": [
+                { "name": "cancelationReason", "type": "string" }
+              ]
+            }
+          ],
+          "default": null
         }
-      ],
-      "default": null
+      ]
     }
-  ]
-}

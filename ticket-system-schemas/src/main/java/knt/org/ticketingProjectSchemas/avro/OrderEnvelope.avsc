@@ -3,7 +3,7 @@
   "type": "record",
   "name": "OrderEnvelope",
   "fields": [
-    { "name": "orderId", "type": "string" },
+    { "name": "orderId", "type": "long" },
     { "name": "orderDate", "type": { "type": "long", "logicalType": "timestamp-millis" } },
     {
       "name": "eventType",
@@ -21,8 +21,8 @@
           "type": "record",
           "name": "OrderCreatedPayload",
           "fields": [
-            { "name": "userId", "type": "long" },
-            { "name": "showId", "type": "long" },
+            { "name": "userCpf", "type": "string" },
+            { "name": "showName", "type": "string" },
             { "name": "ticketKind", "type": "string" },
             { "name": "quantity", "type": "int", "default": 1 },
             {
@@ -55,13 +55,12 @@
         {
           "type": "record",
           "name": "OrderFinalizedPayload",
-          "fields": [{ "name": "orderId", "type": "string" }]
+          "fields": []
         },
         {
           "type": "record",
           "name": "OrderFailedPayload",
           "fields": [
-            { "name": "orderId", "type": "string" },
             { "name": "failureReason", "type": "string" }
           ]
         },
@@ -69,7 +68,6 @@
           "type": "record",
           "name": "OrderCancelledPayload",
           "fields": [
-            { "name": "orderId", "type": "string" },
             { "name": "cancelationReason", "type": "string" }
           ]
         }

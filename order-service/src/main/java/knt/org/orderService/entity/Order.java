@@ -1,6 +1,7 @@
 package knt.org.orderService.entity;
 
 import io.quarkus.hibernate.orm.panache.PanacheEntity;
+import jakarta.enterprise.inject.Default;
 import jakarta.persistence.*;
 import knt.org.orderService.dto.input.OrderRequest;
 import lombok.*;
@@ -15,12 +16,17 @@ public class Order extends PanacheEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     Long id;
+
+    @Column(columnDefinition = "DEFAULT 'ORDER_CREATED'")
     String status;
+
     String showName;
     Double price;
+    String ticketKind;
     Integer ticketQuantity;
+
     @ManyToOne
-            @JoinColumn(name = "clientCpf")
+    @JoinColumn(name = "clientCpf")
     Client buyer;
 
 
@@ -28,7 +34,7 @@ public class Order extends PanacheEntity {
         this.status = status;
         this.showName = newOrder.showName();
         this.price = newOrder.price();
-        this.ticketQuantity = newOrder.quantity();
+        this.ticketQuantity = newOrder.ticketQuantity();
         this.buyer = Client.findById(newOrder.cpfClient());
     }
 }

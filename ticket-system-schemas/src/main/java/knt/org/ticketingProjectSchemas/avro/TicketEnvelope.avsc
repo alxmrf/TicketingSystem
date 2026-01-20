@@ -5,7 +5,7 @@
   "fields": [
     {
       "name": "orderId",
-      "type": "string"
+      "type": "long"
     },
     {
       "name": "ticketEventDate",

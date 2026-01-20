@@ -2,6 +2,7 @@ package knt.org.orderService.entity;
 
 
 import io.quarkus.hibernate.orm.panache.PanacheEntity;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import knt.org.orderService.dto.input.ClientInputDto;
@@ -16,6 +17,7 @@ import lombok.ToString;
 @AllArgsConstructor
 @ToString
 public class Client extends PanacheEntity {
+
 
     @Id
     String cpf;
