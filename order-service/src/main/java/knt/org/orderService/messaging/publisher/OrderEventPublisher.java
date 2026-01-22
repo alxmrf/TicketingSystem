@@ -5,6 +5,7 @@ import jakarta.inject.Inject;
 import knt.org.orderService.entity.Order;
 import knt.org.orderService.messaging.mapper.OrderEnvelopeMapper;
 import knt.org.ticketingProjectSchemas.order.OrderEnvelope;
+import org.eclipse.microprofile.reactive.messaging.Channel;
 import org.eclipse.microprofile.reactive.messaging.Emitter;
 import org.jboss.logging.Logger;
 
@@ -14,6 +15,7 @@ public class OrderEventPublisher {
     private static final Logger LOG =  Logger.getLogger(OrderEventPublisher.class);
 
     @Inject
+    @Channel("order-topic")
     Emitter<OrderEnvelope> orderEnvelopeEmitter;
 
 

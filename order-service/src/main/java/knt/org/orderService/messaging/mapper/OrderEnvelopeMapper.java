@@ -1,5 +1,6 @@
 package knt.org.orderService.messaging.mapper;
 
+import jakarta.enterprise.context.ApplicationScoped;
 import knt.org.orderService.entity.Order;
 import knt.org.ticketingProjectSchemas.order.OrderCreatedPayload;
 import knt.org.ticketingProjectSchemas.order.OrderEnvelope;
@@ -8,6 +9,7 @@ import knt.org.ticketingProjectSchemas.order.OrderEventType;
 import java.time.Instant;
 import java.time.LocalDateTime;
 
+@ApplicationScoped
 public class OrderEnvelopeMapper {
 
 
@@ -15,7 +17,7 @@ public class OrderEnvelopeMapper {
          var newOrderEvent =  new OrderEnvelope();
          newOrderEvent.setOrderId(order.getId());
          newOrderEvent.setEventType(OrderEventType.ORDER_CREATED);
-         newOrderEvent.setOrderDate(Instant.from(LocalDateTime.now()));
+         newOrderEvent.setOrderDate(Instant.from(order.getCreatedAt()));
 
          var payload =  new OrderCreatedPayload();
 

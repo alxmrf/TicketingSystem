@@ -6,20 +6,18 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import knt.org.orderService.dto.input.ClientInputDto;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 @Entity
 @Getter
 @Setter
 @AllArgsConstructor
+@NoArgsConstructor
 @ToString
 public class Client extends PanacheEntity {
 
 
-    @Id
+    @Column(unique = true)
     String cpf;
     String name;
     String email;

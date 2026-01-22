@@ -1,15 +1,17 @@
-package knt.org.orderService.mapper;
+    package knt.org.orderService.mapper;
 
-import knt.org.orderService.dto.input.OrderRequest;
-import knt.org.orderService.entity.Client;
-import knt.org.orderService.entity.Order;
-import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
+    import jakarta.enterprise.context.ApplicationScoped;
+    import knt.org.orderService.dto.input.OrderRequest;
+    import knt.org.orderService.entity.Client;
+    import knt.org.orderService.entity.Order;
+    import org.mapstruct.Mapper;
+    import org.mapstruct.Mapping;
 
-@Mapper(config = ProjectMapperConfig.class)
-public interface OrderMapper {
-
-    @Mapping(target = "buyer",source="client")
-    Order createOrder(OrderRequest newOrderDTO, Client client);
-
-}
+    @Mapper(config = GlobalMapperConfig.class)
+    public interface OrderMapper {
+        @Mapping(target = "buyer",source="client")
+        @Mapping(target = "status", ignore = true)
+        @Mapping(target = "id", ignore = true)
+        @Mapping(target = "createdAt", ignore = true)
+        Order createOrder(OrderRequest newOrderDTO, Client client);
+    }
