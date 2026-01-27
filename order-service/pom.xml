@@ -80,6 +80,10 @@
             <version>00.00.00.01</version>
             <scope>compile</scope>
         </dependency>
+        <dependency>
+            <groupId>io.quarkus</groupId>
+            <artifactId>quarkus-apicurio-registry-avro</artifactId>
+        </dependency>
     </dependencies>
 
 

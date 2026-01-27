@@ -15,6 +15,15 @@ services:
     ports:
       - "9092:9092"
 
+  schema-registry:
+    image: apicurio/apicurio-registry-mem:2.4.4.Final
+    container_name: apicurio-avro-registry
+    ports:
+      - "8084:8080"
+    environment:
+      # Opcional: Habilita log de nível DEBUG se precisar ver o registro acontecendo
+      QUARKUS_LOG_LEVEL: INFO
+    # ---------------------------------------
   postgres:
     image: postgres:15
     container_name: postgres-saga
