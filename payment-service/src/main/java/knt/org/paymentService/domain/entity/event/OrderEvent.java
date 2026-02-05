@@ -1,4 +1,4 @@
-package knt.org.paymentService.dto.event;
+package knt.org.paymentService.domain.entity.event;
 
 
 import jakarta.persistence.Entity;

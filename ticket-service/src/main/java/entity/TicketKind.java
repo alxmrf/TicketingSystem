@@ -1,5 +1,6 @@
 package entity;
 
+import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -12,7 +13,7 @@ import java.math.BigDecimal;
 @Setter
 @Getter
 @NoArgsConstructor
-public class TicketKind {
+public class TicketKind extends PanacheEntityBase {
 
     @Id
     Long id;

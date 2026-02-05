@@ -1,4 +1,4 @@
-package knt.org.paymentService.entity;
+package knt.org.paymentService.domain.entity;
 
 
 import jakarta.persistence.Entity;
